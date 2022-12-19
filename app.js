@@ -24,7 +24,7 @@ app.use((error, req, res, next) => {
 })
 
 //! connect database
-const con = require('./config/database')
+const con = require('./config/mysql')
 
 // //! server
 app.listen(1000, () => console.log(`port berjalan pada localhost:1000`))

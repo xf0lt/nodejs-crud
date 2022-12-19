@@ -1,11 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../config/mysql')
 
 // ! method get
-router.get('/', (req, res, next) => {
-   res.status(200).json({
-      message: 'Get method mahasiswa'
+router.get('/', (req, res) => {
+   var sql = "SELECT * FROM `mahasiswa`";
+   db.query(sql, (err, result) => {
+      if(err){
+         console.log(err);
+      } else {
+         res.status(200).json({
+            message: 'Get method mahasiswa',
+            data: result
+         })
+      }
+   
    })
+  
 })
 
 // ! method post
@@ -18,17 +29,16 @@ router.post('/', (req, res, next) => {
 // ! berdasarkan NIM
 router.get('/:nim', (req, res, next) => {
    const nim = req.params.nim;
-   if(nim === '12345') {
-      res.status(200).json({
-         message: 'NIM 12335'
-      })
-   } else {
-      res.status(404).json({
-         message: 'NIM not found'
-      })
-   }
-   res.status(200).json({
-      message: 'NIM di temukan!'
+   var sql = "SELECT * FROM `mahasiswa` WHERE `nim`="+nim;
+   db.query(sql, (err, result) => {
+      if(err){
+         console.log(err);
+      }else{
+         res.status(200).json({
+            message: 'Mahasiswa ditemukan',
+            data: result
+         })
+      }
    })
 })
 

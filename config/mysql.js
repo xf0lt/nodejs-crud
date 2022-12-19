@@ -8,13 +8,14 @@ var con = mysql.createConnection({
    database: "my_university"
 });
 
-con.end(function(err){
-   if(err){
-      return console.log('error:' + err.message);
-   }
-   console.log('connection');
-})
+// con.end(function(err){
+//    if(err){
+//       return console.log('error:' + err.message);
+//    }
+//    console.log('connection');
+// })
 
+module.exports = con
 // con.connect(function(err) {
 //    if (err) throw err;
 //    console.log("Connected!");
